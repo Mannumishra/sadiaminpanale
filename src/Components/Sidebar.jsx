@@ -10,7 +10,7 @@ const Sidebar = () => {
                 loginvalue? <Link to="/home" className="list-group-item list-group-item-action">Home</Link>:
                 <Link to="/" className="list-group-item list-group-item-action">Home</Link>
                }
-                <Link to="/banare" className="list-group-item list-group-item-action list-group-item-primary">Banner</Link>
+                {/* <Link to="/banare" className="list-group-item list-group-item-action list-group-item-primary">Banner</Link> */}
                 <Link to="/users" className="list-group-item list-group-item-action list-group-item-light">Users</Link>
                 <Link to="/contact" className="list-group-item list-group-item-action list-group-item-warning">Contact</Link>
             </div>
