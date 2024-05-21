@@ -30,7 +30,7 @@ const Home = () => {
                                     <div className="card bg-info text-white mb-4">
                                         <div className="card-body">Users</div>
                                         <div className="card-footer d-flex align-items-center justify-content-between">
-                                            <Link className="small text-white stretched-link" to="/">View Details</Link>
+                                            <Link className="small text-white stretched-link" to="/users">View Details</Link>
                                             <div className="small text-white"><i className="fas fa-angle-right"></i></div>
                                         </div>
                                     </div>

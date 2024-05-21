@@ -7,7 +7,8 @@ const Contact = () => {
 
     const getApiData = async()=>{
         try {
-           let res = await axios.get("https://sadibackend.onrender.com/api/contact") 
+           let res = await axios.get("https://sadibackend.onrender.com/api/conatct") 
+           console.log(res)
            setData(res.data.data)
         } catch (error) {
             console.log(error);

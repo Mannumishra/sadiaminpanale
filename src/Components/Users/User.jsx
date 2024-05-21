@@ -1,6 +1,7 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import Sidebar from '../Sidebar'
+import { Link } from 'react-router-dom'
 
 const User = () => {
   const [data, setData] = useState([])
@@ -43,7 +44,7 @@ const User = () => {
                       <td>{item.email}</td>
                       <td>{item.phone}</td>
                       <td>{item.gender}</td>
-                      <td><button className='btn btn-success'>See Detals</button></td>
+                      <td><Link to={`/userdetails/${item._id}`}><button className='btn btn-success'>See Detals</button></Link></td>
                     </tr>
                   )
                 }
