@@ -1,11 +1,12 @@
 import React, { useState } from 'react'
 import './Login.css'
 import { Link, useNavigate } from 'react-router-dom'
-import axios from 'axios'
 import toast from 'react-hot-toast'
 // import login from './image/loinin.avif'
 
 const Login = () => {
+  const email = "samuhikvivah@gmail.com"
+  const password = "Mannu@2207"
   const navigate = useNavigate()
   const [data, setData] = useState({
     email: "",
@@ -20,21 +21,23 @@ const Login = () => {
   const postData = async (e) => {
     e.preventDefault()
     try {
-      let res = await axios.post("https://api.myriccoproducts.com/api/user/login", data)
-      console.log(res)
-      if (res.data.data.role === "Admin") {
+      if (email === data.email && password === data.password) {
         sessionStorage.setItem("login", true)
-        sessionStorage.setItem("userid", res.data.data._id)
-        sessionStorage.setItem("name", res.data.data.name)
-        sessionStorage.setItem("username", res.data.data.username)
-        sessionStorage.setItem("role", res.data.data.role)
-        sessionStorage.setItem("token", res.data.token)
         toast.success("Login sucessfully")
         navigate("/home")
         window.location.href = '/home'
       }
+      // let res = await axios.post("https://sadibackend.onrender.com/api/user/login", data)
+      // console.log(res)
+      // if (res.data.data.role === "Admin") {
+      //   sessionStorage.setItem("login", true)
+      //   sessionStorage.setItem("userid", res.data.data._id)
+      //   sessionStorage.setItem("name", res.data.data.name)
+      //   sessionStorage.setItem("username", res.data.data.username)
+      //   sessionStorage.setItem("role", res.data.data.role)
+      //   sessionStorage.setItem("token", res.data.token
       else {
-        
+
       }
     } catch (error) {
       toast.error("invaild username or password")

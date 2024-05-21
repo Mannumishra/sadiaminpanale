@@ -30,7 +30,7 @@ const CreateTestimonial = () => {
             formData.append("message", data.message);
             formData.append("image", data.image);
 
-            const res = await axios.post("https://api.myriccoproducts.com/api/testimonial", formData);
+            const res = await axios.post("https://sadibackend.onrender.com/api/testimonial", formData);
             if (res.status === 200) {
                 toast.success("Testimonial Created Successfully");
                 navigate("/testimonial");
