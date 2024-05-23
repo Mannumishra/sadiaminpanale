@@ -12,6 +12,7 @@ const Sidebar = () => {
                }
                 {/* <Link to="/banare" className="list-group-item list-group-item-action list-group-item-primary">Banner</Link> */}
                 <Link to="/users" className="list-group-item list-group-item-action list-group-item-light">Users</Link>
+                <Link to="/success" className="list-group-item list-group-item-action list-group-item-light">Success story</Link>
                 <Link to="/contact" className="list-group-item list-group-item-action list-group-item-warning">Contact</Link>
             </div>
         </>

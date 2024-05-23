@@ -27,17 +27,8 @@ const Login = () => {
         navigate("/home")
         window.location.href = '/home'
       }
-      // let res = await axios.post("https://sadibackend.onrender.com/api/user/login", data)
-      // console.log(res)
-      // if (res.data.data.role === "Admin") {
-      //   sessionStorage.setItem("login", true)
-      //   sessionStorage.setItem("userid", res.data.data._id)
-      //   sessionStorage.setItem("name", res.data.data.name)
-      //   sessionStorage.setItem("username", res.data.data.username)
-      //   sessionStorage.setItem("role", res.data.data.role)
-      //   sessionStorage.setItem("token", res.data.token
       else {
-
+        toast.error("Invaild Username Or Password")
       }
     } catch (error) {
       toast.error("invaild username or password")
