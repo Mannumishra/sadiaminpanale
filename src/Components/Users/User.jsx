@@ -2,6 +2,7 @@ import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import Sidebar from '../Sidebar'
 import { Link } from 'react-router-dom'
+import toast from 'react-hot-toast'
 
 const User = () => {
   const [data, setData] = useState([])
@@ -14,6 +15,19 @@ const User = () => {
       console.log(error);
     }
   }
+
+  const deleteRecord = async (_id) => {
+    try {
+      let res = await axios.delete("https://sadibackend.onrender.com/api/user/" + _id)
+      if (res.status === 200) {
+        toast.success("User Details Deleted Successfully")
+      }
+      getApiData()
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
   useEffect(() => {
     getApiData()
   }, [])
@@ -44,7 +58,9 @@ const User = () => {
                       <td>{item.email}</td>
                       <td>{item.phone}</td>
                       <td>{item.gender}</td>
-                      <td><Link to={`/userdetails/${item._id}`}><button className='btn btn-success'>See Detals</button></Link></td>
+                      <td><Link to={`/userdetails/${item._id}`}><button className='btn btn-success'>See Details</button></Link>&nbsp;
+                        <Link><button className='btn btn-danger' onClick={() => deleteRecord(item._id)}>Delete</button></Link>
+                      </td>
                     </tr>
                   )
                 }
