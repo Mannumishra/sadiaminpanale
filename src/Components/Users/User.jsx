@@ -10,6 +10,7 @@ const User = () => {
   const getApiData = async () => {
     try {
       let res = await axios.get("https://sadibackend.onrender.com/api/user")
+      console.log(res)
       setData(res.data.data)
     } catch (error) {
       console.log(error);
