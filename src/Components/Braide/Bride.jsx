@@ -6,16 +6,16 @@ import toast from 'react-hot-toast';
 import ReactPaginate from 'react-paginate';
 // import './App.css'; // Ensure this path is correct
 
-const Testimonial = () => {
+const Bride = () => {
     const [data, setData] = useState([]);
     const [currentPage, setCurrentPage] = useState(0);
     const [itemsPerPage] = useState(3);
 
     const deleteRecord = async (_id) => {
         try {
-            const res = await axios.delete(`http://localhost:8000/api/success/${_id}`)
+            const res = await axios.delete(`http://localhost:8000/api/bride/${_id}`)
             if (res.status === 200) {
-                toast.success("Success Story Deleted Successfully");
+                toast.success("Banner Deleted Successfully");
                 getApiData();
             }
         } catch (error) {
@@ -25,7 +25,8 @@ const Testimonial = () => {
 
     const getApiData = async () => {
         try {
-            const res = await axios.get("http://localhost:8000/api/success");
+            const res = await axios.get("http://localhost:8000/api/bride");
+            console.log(res)
             const newData = res.data.data;
             setData(newData.reverse());
         } catch (error) {
@@ -54,17 +55,16 @@ const Testimonial = () => {
                 </div>
                 <div className="col-md-9 mb-5">
                     <div style={{ display: "flex", justifyContent: "space-between" }}>
-                        <h5 className='bg-dark p-2 text-light text-center'>News&Events</h5>
-                        <Link to='/createsuccess' className='btn btn-dark'>News&Events</Link>
+                        <h5 className='bg-dark p-2 text-light text-center'>Bride</h5>
+                        <Link to='/createbride' className='btn btn-dark'>Create Bride</Link>
                     </div>
                     <table className='table'>
                         <thead>
                             <tr>
                                 <th>S.No</th>
-                                <th>Description</th>
-                                <th>Sub Description</th>
                                 <th>Image</th>
-                                <th>Date</th>
+                                <th>Name</th>
+                                <th>Bridename</th>
                                 <th>Update</th>
                                 <th>Delete</th>
                             </tr>
@@ -73,11 +73,10 @@ const Testimonial = () => {
                             {currentPageData.map((item, index) => (
                                 <tr key={index}>
                                     <td>{index + 1 + offset}</td>
-                                    <td>{item.description}</td>
-                                    <td>{item.subdescription}</td>
                                     <td><img src={item.image} alt="" style={{ height: 50 }} /></td>
-                                    <td>{item.date}</td>
-                                    <td><Link to={`/updatesuccess/${item._id}`} className='btn btn-success'>Edit</Link></td>
+                                    <td>{item.name}</td>
+                                    <td>{item.bridename}</td>
+                                    <td><Link to={`/updatebride/${item._id}`} className='btn btn-success'>Edit</Link></td>
                                     <td><button className='btn btn-danger' onClick={() => deleteRecord(item._id)}>Delete</button></td>
                                 </tr>
                             ))}
@@ -102,4 +101,4 @@ const Testimonial = () => {
     );
 };
 
-export default Testimonial;
+export default Bride;

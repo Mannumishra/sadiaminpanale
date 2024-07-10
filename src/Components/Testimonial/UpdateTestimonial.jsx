@@ -8,15 +8,15 @@ const UpdateTestimonial = () => {
     const { _id } = useParams();
     const navigate = useNavigate();
     const [data, setData] = useState({
-        husbandname: "",
-        wifename: "",
-        successmess: "",
+        description: "",
+        subdescription: "",
+        date: "",
         image: ""
     });
 
     const getApiData = async () => {
         try {
-            const res = await axios.get(`https://sadibackend.onrender.com/api/success/${_id}`);
+            const res = await axios.get(`http://localhost:8000/api/success/${_id}`);
             setData(res.data.data);
         } catch (error) {
             console.log(error);
@@ -34,15 +34,15 @@ const UpdateTestimonial = () => {
     };
 
     const formData = new FormData();
-    formData.append("husbandname", data.husbandname);
-    formData.append("wifename", data.wifename);
-    formData.append("successmess", data.successmess);
+    formData.append("description", data.description);
+    formData.append("subdescription", data.subdescription);
     formData.append("image", data.image);
+    formData.append("date", data.date);
 
     const postData = async (e) => {
         e.preventDefault();
         try {
-            const res = await axios.put(`https://sadibackend.onrender.com/api/success/${_id}`, formData);
+            const res = await axios.put(`http://localhost:8000/api/success/${_id}`, formData);
             console.log(res)
             if (res.status === 200) {
                 toast.success("Testimonial Updated Successfully");
@@ -69,21 +69,23 @@ const UpdateTestimonial = () => {
                     <h5 className='bg-dark p-2 text-light text-center'>Update Success Story</h5>
                     <div className="form-container">
                         <form onSubmit={postData}>
-                            <div className="mb-2">
-                                <label htmlFor="name" className="form-label">Husband Name</label>
-                                <input type="text" name="husbandname" value={data.husbandname} className="form-control" onChange={getInputData} />
-                            </div>
-                            <div className="mb-2">
-                                <label htmlFor="name" className="form-label">Wife Name</label>
-                                <input type="text" name="wifename" value={data.wifename} className="form-control" onChange={getInputData} />
-                            </div>
-                            <div className="mb-2">
-                                <label htmlFor="message" className="form-label">Story</label>
-                                <input type="text" name="successmess" value={data.successmess} className="form-control" onChange={getInputData} />
-                            </div>
-                            <div className="mb-2">
-                                <label htmlFor="image" className="form-label">Image</label>
-                                <input type="file" name="image" className="form-control" onChange={getFileData} />
+                            <div className="row">
+                                <div className=" mb-2">
+                                    <label htmlFor="name" className="form-label">Description<sup className='text-danger'>*</sup></label>
+                                    <textarea type="text" name="description" className="form-control" value={data.description} onChange={getInputData} placeholder='Description' />
+                                </div>
+                                <div className="mb-2">
+                                    <label htmlFor="message" className="form-label">Sub Description<sup className='text-danger'>*</sup></label>
+                                    <textarea type="text" name="subdescription" className="form-control" value={data.subdescription} onChange={getInputData} placeholder='sub Description' />
+                                </div>
+                                <div className="col-md-9 mb-2">
+                                    <label htmlFor="image" className="form-label">Image<sup className='text-danger'>*</sup></label>
+                                    <input type="file" name="image" className="form-control" onChange={getFileData} />
+                                </div>
+                                <div className="col-md-3 mb-2">
+                                    <label htmlFor="message" className="form-label">Date<sup className='text-danger'>*</sup></label>
+                                    <input type="text" name="date" className="form-control" value={data.date} onChange={getInputData} placeholder='Date' />
+                                </div>
                             </div>
                             <button type="submit" className="btn btn-dark w-100">Update Success Story</button>
                         </form>

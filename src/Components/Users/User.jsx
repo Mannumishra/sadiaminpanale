@@ -3,15 +3,19 @@ import React, { useEffect, useState } from 'react'
 import Sidebar from '../Sidebar'
 import { Link } from 'react-router-dom'
 import toast from 'react-hot-toast'
+import ReactPaginate from 'react-paginate'
+// import './App.css'; // Ensure this path is correct
 
 const User = () => {
   const [data, setData] = useState([])
+  const [currentPage, setCurrentPage] = useState(0)
+  const [itemsPerPage] = useState(5)
 
   const getApiData = async () => {
     try {
-      let res = await axios.get("https://sadibackend.onrender.com/api/user")
-      console.log(res)
-      setData(res.data.data)
+      let res = await axios.get("http://localhost:8000/api/user")
+      const newData = res.data.data
+      setData(newData.reverse())
     } catch (error) {
       console.log(error);
     }
@@ -19,7 +23,7 @@ const User = () => {
 
   const deleteRecord = async (_id) => {
     try {
-      let res = await axios.delete("https://sadibackend.onrender.com/api/user/" + _id)
+      let res = await axios.delete("http://localhost:8000/api/user/" + _id)
       if (res.status === 200) {
         toast.success("User Details Deleted Successfully")
       }
@@ -32,6 +36,16 @@ const User = () => {
   useEffect(() => {
     getApiData()
   }, [])
+
+  const handlePageClick = (event) => {
+    setCurrentPage(event.selected)
+  }
+
+  // Calculate current items
+  const offset = currentPage * itemsPerPage
+  const currentPageData = data.slice(offset, offset + itemsPerPage)
+  const pageCount = Math.ceil(data.length / itemsPerPage)
+
   return (
     <>
       <div className="container-fluid" style={{ marginTop: 80 }}>
@@ -44,6 +58,7 @@ const User = () => {
             <table className='table table-bordered'>
               <thead>
                 <tr>
+                  <th>S No.</th>
                   <th>Name</th>
                   <th>Email</th>
                   <th>Contact</th>
@@ -53,20 +68,35 @@ const User = () => {
               </thead>
               <tbody>
                 {
-                  data.map((item, index) =>
+                  currentPageData.map((item, index) =>
                     <tr key={index}>
+                      <td>{index + 1 + offset}</td>
                       <td>{item.name}</td>
                       <td>{item.email}</td>
                       <td>{item.phone}</td>
                       <td>{item.gender}</td>
-                      <td><Link to={`/userdetails/${item._id}`}><button className='btn btn-success'>See Details</button></Link>&nbsp;
-                        <Link><button className='btn btn-danger' onClick={() => deleteRecord(item._id)}>Delete</button></Link>
+                      <td>
+                        <Link to={`/userdetails/${item._id}`}><button className='btn btn-success'>See Details</button></Link>&nbsp;
+                        <button className='btn btn-danger' onClick={() => deleteRecord(item._id)}>Delete</button>
                       </td>
                     </tr>
                   )
                 }
               </tbody>
             </table>
+            <ReactPaginate
+              previousLabel={'previous'}
+              nextLabel={'next'}
+              breakLabel={'...'}
+              breakClassName={'break-me'}
+              pageCount={pageCount}
+              marginPagesDisplayed={2}
+              pageRangeDisplayed={5}
+              onPageChange={handlePageClick}
+              containerClassName={'pagination'}
+              subContainerClassName={'pages pagination'}
+              activeClassName={'active'}
+            />
           </div>
         </div>
       </div>
