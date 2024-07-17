@@ -20,14 +20,18 @@ import UpdateBride from './Components/Braide/UpdateBride';
 import CreateBride from './Components/Braide/CreateBride';
 
 function App() {
+  const login = sessionStorage.getItem("login")
   return (
     <>
       <BrowserRouter>
         <Navbar />
         <Routes>
-          <Route path='/home' element={<Home />} />
-
-          <Route path='/login' element={<Login />} />
+         {
+          login? <Route path='/home' element={<Home />} />
+          :
+          <Route path='/' element={<Login />} />
+         }
+         
 
           <Route path='/users' element={<User />} />
 
