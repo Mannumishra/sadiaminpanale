@@ -9,7 +9,7 @@ const Footer = () => {
       </div> */}
       <div className="container-fluid px-4">
         <div className="text-muted" style={{ textAlign: "center" }}>
-          Copyright &copy; Your Website 2024
+        digiindiasolutions &copy;  2024
         </div>
       </div>
     </footer>

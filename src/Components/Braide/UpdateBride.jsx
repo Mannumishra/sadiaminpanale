@@ -15,7 +15,7 @@ const UpdateBride = () => {
 
     const getApiData = async () => {
         try {
-            const res = await axios.get(`http://localhost:8000/api/bride/${_id}`);
+            const res = await axios.get(`https://api.sitarammarriagebureau.com/api/bride/${_id}`);
             console.log(res);
             setData(res.data.data);
         } catch (error) {
@@ -41,7 +41,7 @@ const UpdateBride = () => {
         e.preventDefault();
         setLoading(true); 
         try {
-            const res = await axios.put(`http://localhost:8000/api/bride/${_id}`, formData);
+            const res = await axios.put(`https://api.sitarammarriagebureau.com/api/bride/${_id}`, formData);
             console.log(res);
             if (res.status === 200) {
                 toast.success("Banner Updated Successfully");

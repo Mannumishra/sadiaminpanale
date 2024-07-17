@@ -12,7 +12,7 @@ const UpdateBanner = () => {
 
     const getApiData = async () => {
         try {
-            const res = await axios.get(`http://localhost:8000/api/banner/${_id}`);
+            const res = await axios.get(`https://api.sitarammarriagebureau.com/api/banner/${_id}`);
             console.log(res);
             setData(res.data.data);
         } catch (error) {
@@ -32,7 +32,7 @@ const UpdateBanner = () => {
         e.preventDefault();
         setLoading(true); // Set loading to true when the request starts
         try {
-            const res = await axios.put(`http://localhost:8000/api/banner/${_id}`, formData);
+            const res = await axios.put(`https://api.sitarammarriagebureau.com/api/banner/${_id}`, formData);
             console.log(res);
             if (res.status === 200) {
                 toast.success("Banner Updated Successfully");

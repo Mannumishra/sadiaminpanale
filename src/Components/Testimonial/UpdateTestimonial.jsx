@@ -5,6 +5,7 @@ import toast from 'react-hot-toast';
 import { useNavigate, useParams } from 'react-router-dom';
 
 const UpdateTestimonial = () => {
+    const [loading, setLoading] = useState(false)
     const { _id } = useParams();
     const navigate = useNavigate();
     const [data, setData] = useState({
@@ -16,7 +17,7 @@ const UpdateTestimonial = () => {
 
     const getApiData = async () => {
         try {
-            const res = await axios.get(`http://localhost:8000/api/success/${_id}`);
+            const res = await axios.get(`https://api.sitarammarriagebureau.com/api/success/${_id}`);
             setData(res.data.data);
         } catch (error) {
             console.log(error);
@@ -42,13 +43,16 @@ const UpdateTestimonial = () => {
     const postData = async (e) => {
         e.preventDefault();
         try {
-            const res = await axios.put(`http://localhost:8000/api/success/${_id}`, formData);
+            setLoading(true)
+            const res = await axios.put(`https://api.sitarammarriagebureau.com/api/success/${_id}`, formData);
             console.log(res)
             if (res.status === 200) {
-                toast.success("Testimonial Updated Successfully");
+                toast.success("News&Events Updated Successfully");
                 navigate("/success");
+                setLoading(false)
             }
         } catch (error) {
+            setLoading(false)
             console.log(error);
         }
     };
@@ -87,7 +91,7 @@ const UpdateTestimonial = () => {
                                     <input type="text" name="date" className="form-control" value={data.date} onChange={getInputData} placeholder='Date' />
                                 </div>
                             </div>
-                            <button type="submit" className="btn btn-dark w-100">Update Success Story</button>
+                            <button type="submit" className="btn btn-dark w-100">{loading ? "Upadting..." : "Update Success Story"}</button>
                         </form>
                     </div>
                 </div>

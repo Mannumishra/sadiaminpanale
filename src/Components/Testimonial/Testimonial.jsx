@@ -13,7 +13,7 @@ const Testimonial = () => {
 
     const deleteRecord = async (_id) => {
         try {
-            const res = await axios.delete(`http://localhost:8000/api/success/${_id}`)
+            const res = await axios.delete(`https://api.sitarammarriagebureau.com/api/success/${_id}`)
             if (res.status === 200) {
                 toast.success("Success Story Deleted Successfully");
                 getApiData();
@@ -25,7 +25,7 @@ const Testimonial = () => {
 
     const getApiData = async () => {
         try {
-            const res = await axios.get("http://localhost:8000/api/success");
+            const res = await axios.get("https://api.sitarammarriagebureau.com/api/success");
             const newData = res.data.data;
             setData(newData.reverse());
         } catch (error) {

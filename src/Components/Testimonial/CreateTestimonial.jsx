@@ -34,7 +34,7 @@ const CreateTestimonial = () => {
             formData.append("image", data.image);
             formData.append("date", data.date);
 
-            const res = await axios.post("http://localhost:8000/api/success", formData);
+            const res = await axios.post("https://api.sitarammarriagebureau.com/api/success", formData);
             if (res.status === 200) {
                 toast.success("Success Story Created Successfully");
                 navigate("/success");

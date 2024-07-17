@@ -13,7 +13,7 @@ const Banner = () => {
 
     const deleteRecord = async (_id) => {
         try {
-            const res = await axios.delete(`http://localhost:8000/api/banner/${_id}`)
+            const res = await axios.delete(`https://api.sitarammarriagebureau.com/api/banner/${_id}`)
             if (res.status === 200) {
                 toast.success("Banner Deleted Successfully");
                 getApiData();
@@ -25,7 +25,7 @@ const Banner = () => {
 
     const getApiData = async () => {
         try {
-            const res = await axios.get("http://localhost:8000/api/banner");
+            const res = await axios.get("https://api.sitarammarriagebureau.com/api/banner");
             console.log(res)
             const newData = res.data.data;
             setData(newData.reverse());

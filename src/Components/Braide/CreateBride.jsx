@@ -35,7 +35,7 @@ const CreateBride = () => {
             formData.append("image", data.image);
             formData.append("name", data.name);
             formData.append("bridename", data.bridename);
-            const res = await axios.post("http://localhost:8000/api/bride", formData);
+            const res = await axios.post("https://api.sitarammarriagebureau.com/api/bride", formData);
             console.log(res)
             if (res.status === 200) {
                 toast.success("Banner Created Successfully");

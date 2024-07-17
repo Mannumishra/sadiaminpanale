@@ -5,14 +5,14 @@ import Sidebar from '../Sidebar'
 const Home = () => {
     return (
         <>
-            <div className="container-fluid" style={{ marginTop: 80 }}>
+            <div className="container-fluid" style={{ marginTop: 70 }}>
                 <div className="row">
                     <div className="col-md-3">
                         <Sidebar />
                     </div>
-                    <div className="col-md-9 mb-5">
+                    <div className="col-md-9 mb-5" style={{backgroundColor:"#FFE69C" ,height:"430px"}}>
                         <div className="container-fluid">
-                            <h1 className="mt-4">Dashboard</h1>
+                            <h1 className="mt-4 text-uppercase" >Dashboard</h1>
                             <ol className="breadcrumb mb-4">
                                 <li className="breadcrumb-item active">Dashboard</li>
                             </ol>
