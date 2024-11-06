@@ -6,7 +6,7 @@ import toast from 'react-hot-toast'
 
 const Login = () => {
   const email = "samuhikvivah@gmail.com"
-  const password = "Mannu@2207"
+  const password = "Sitaram@2207"
   const navigate = useNavigate()
   const [data, setData] = useState({
     email: "",
