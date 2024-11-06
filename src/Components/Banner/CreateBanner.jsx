@@ -40,6 +40,7 @@ const CreateBanner = () => {
             setLoading(false);
         }
     };
+    
 
     return (
         <div className="container-fluid" style={{ marginTop: 80 }}>
